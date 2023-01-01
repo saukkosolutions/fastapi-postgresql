@@ -1,5 +1,5 @@
 # Stage 0, "build-stage", based on Node.js, to build and compile the frontend
-FROM greenaj/node-frontend:12 as build-stage
+FROM greenaj/node-frontend:18 as build-stage
 
 WORKDIR /app
 
@@ -10,6 +10,7 @@ RUN npm install
 COPY ./ /app/
 
 ARG FRONTEND_ENV=production
+ARG NODE_OPTIONS=--openssl-legacy-provider
 
 ENV VUE_APP_ENV=${FRONTEND_ENV}
 
