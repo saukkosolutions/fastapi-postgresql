@@ -162,6 +162,7 @@ services:
   
   celeryworker:
     image: '${DOCKER_IMAGE_CELERYWORKER?Variable not set}:${TAG-latest}'
+    platform: linux/amd64
     depends_on:
       - db
       - queue
