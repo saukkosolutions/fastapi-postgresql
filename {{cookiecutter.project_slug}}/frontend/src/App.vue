@@ -1,43 +1,29 @@
+<script setup lang="ts">
+import HelloWorld from './components/HelloWorld.vue'
+</script>
+
 <template>
-  <div id="app">
-    <v-app>
-      <v-content v-if="loggedIn===null">
-        <v-container fill-height>
-          <v-layout align-center justify-center>
-            <v-flex>
-              <div class="text-xs-center">
-                <div class="headline my-5">Loading...</div>
-                <v-progress-circular size="100" indeterminate color="primary"></v-progress-circular>
-              </div>
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </v-content>
-      <router-view v-else />
-      <NotificationsManager></NotificationsManager>
-    </v-app>
+  <div>
+    <a href="https://vitejs.dev" target="_blank">
+      <img src="/vite.svg" class="logo" alt="Vite logo" />
+    </a>
+    <a href="https://vuejs.org/" target="_blank">
+      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
+    </a>
   </div>
+  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import NotificationsManager from '@/components/NotificationsManager.vue';
-import { readIsLoggedIn } from '@/store/main/getters';
-import { dispatchCheckLoggedIn } from '@/store/main/actions';
-
-@Component({
-  components: {
-    NotificationsManager,
-  },
-})
-export default class App extends Vue {
-
-  get loggedIn() {
-    return readIsLoggedIn(this.$store);
-  }
-
-  public async created() {
-    await dispatchCheckLoggedIn(this.$store);
-  }
+<style scoped>
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
 }
-</script>
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.vue:hover {
+  filter: drop-shadow(0 0 2em #42b883aa);
+}
+</style>

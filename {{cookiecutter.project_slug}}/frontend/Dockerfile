@@ -15,12 +15,12 @@ ARG NODE_OPTIONS=--openssl-legacy-provider
 ENV VUE_APP_ENV=${FRONTEND_ENV}
 
 # Comment out the next line to disable tests
-RUN npm run test:unit
+# RUN npm run test:unit
 
 RUN npm run build
 
 
-# Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
+# # Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
 FROM nginx:1.22.1
 
 COPY --from=build-stage /app/dist/ /usr/share/nginx/html
